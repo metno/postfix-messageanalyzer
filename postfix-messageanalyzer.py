@@ -29,6 +29,8 @@ LAST_LINES = 10
 DEBUG_LINES = 6
 POLL_SLEEP = 0.12
 
+VERSION = "0.2.0"
+
 BATCH_SIZE = 200
 DRAW_INTERVAL = 0.06
 
@@ -801,7 +803,7 @@ def main(stdscr):
                         safe_addstr(stdscr, y, 2, raw[: curses.COLS - 4])
 
                 # Bottom key bar
-                key_bar = "Keys: Up/Down k/j  PgUp/PgDn  Home/End  Enter=subject  Space=follow  q=quit"
+                key_bar = f"Keys: Up/Down k/j  PgUp/PgDn  Home/End  Enter=subject  Space=follow  q=quit  v{VERSION}"
                 safe_addstr(
                     stdscr, curses.LINES - 1, 0, bar_str(key_bar), curses.A_REVERSE
                 )
