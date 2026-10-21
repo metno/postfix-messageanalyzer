@@ -10,7 +10,7 @@ Postfix real-time analyzer:
 - error highlighting (status != sent, DSN 4xx/5xx, parenthesized replies)
 - --debug writes debug.log (optional)
 
-Roger og KI-chatgpt5-mini
+# Generated with AI assistance (Qwen3.6, gpt-5-mini)
 """
 
 import re, time, os, sys, argparse, threading, queue, signal, datetime, subprocess

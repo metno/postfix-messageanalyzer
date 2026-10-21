@@ -1,4 +1,22 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
+
+# Debug output
 debug.log
+
+# OpenCode AI framework (machine-specific)
+opencode.json
+.opencode/
+
+# Environment files
+.env
+.env.*
+
+# Virtual environments (Rule 8)
+venv/
+.venv/
+
+# OpenCode npm dependencies
+.opencode/node_modules/
