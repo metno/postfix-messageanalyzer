@@ -69,6 +69,18 @@ Enables a debug panel and writes unmatched log lines to `debug.log`:
 sudo python3 postfix-messageanalyzer.py --debug
 ```
 
+### Demo mode (no Postfix required)
+
+A sample log file is included for testing without a running Postfix instance:
+
+```bash
+python3 postfix-messageanalyzer.py --logfile demo-mail.log --since "1d"
+```
+
+The demo log contains realistic Postfix entries covering successful deliveries, bounced messages, deferred queues, and various DSN codes.
+
+![Demo Screenshot](screenshots/demo-ui.png)
+
 ### All options
 
 ```

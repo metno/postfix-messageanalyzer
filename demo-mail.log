@@ -1,0 +1,58 @@
+Oct 20 08:01:12 mailserver postfix/smtpd[12340]: ABCDEF1234: client=unknown[192.168.1.100]
+Oct 20 08:01:13 mailserver postfix/cleanup[12341]: ABCDEF1234: message-id=<20261020080112.ABCDEF1234@mail.example.com>
+Oct 20 08:01:13 mailserver postfix/qmgr[1000]: ABCDEF1234: from=<alice@example.com>, size=24530, nrcpt=1 (queue active)
+Oct 20 08:01:14 mailserver postfix/smtp[12342]: ABCDEF1234: to=<bob@recipient.com>, relay=mail.recipient.com[10.0.0.1]:25, delay=1.2, delays=0.1/0.02/0.3/0.8, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 9F8E7D6C5B)
+Oct 20 08:01:14 mailserver postfix/qmgr[1000]: ABCDEF1234: removed
+Oct 20 08:05:30 mailserver postfix/smtpd[12400]: 1A2B3C4D5E: client=unknown[192.168.1.101]
+Oct 20 08:05:31 mailserver postfix/cleanup[12401]: 1A2B3C4D5E: message-id=<20261020080530.1A2B3C4D5E@mail.example.com>
+Oct 20 08:05:31 mailserver postfix/qmgr[1000]: 1A2B3C4D5E: from=<newsletter@company.com>, size=102400, nrcpt=1 (queue active)
+Oct 20 08:05:33 mailserver postfix/smtp[12402]: 1A2B3C4D5E: to=<carol@slowserver.net>, relay=mail.slowserver.net[10.0.0.2]:25, delay=3.5, delays=0.1/0.05/2.0/1.4, dsn=4.7.1, status=deferred (connect to mail.slowserver.net[10.0.0.2]:25: Connection timed out)
+Oct 20 08:10:00 mailserver postfix/smtpd[12500]: FEDCBA9876: client=unknown[172.16.0.50]
+Oct 20 08:10:01 mailserver postfix/cleanup[12501]: FEDCBA9876: message-id=<20261020081000.FEDCBA9876@mail.example.com>
+Oct 20 08:10:01 mailserver postfix/qmgr[1000]: FEDCBA9876: from=<admin@example.com>, size=5120, nrcpt=2 (queue active)
+Oct 20 08:10:03 mailserver postfix/smtp[12502]: FEDCBA9876: to=<user1@domain.com>, relay=mx.domain.com[10.0.1.1]:25, delay=2.1, delays=0.1/0.03/0.8/1.2, dsn=5.1.1, status=bounced (550 5.1.1 <user1@domain.com>: Recipient address rejected: User unknown in virtual mailbox table)
+Oct 20 08:10:03 mailserver postfix/smtp[12503]: FEDCBA9876: to=<user2@domain.com>, relay=mx.domain.com[10.0.1.1]:25, delay=2.3, delays=0.1/0.04/0.9/1.3, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as A1B2C3D4E5)
+Oct 20 08:10:04 mailserver postfix/qmgr[1000]: FEDCBA9876: removed
+Oct 20 08:15:45 mailserver postfix/smtpd[12600]: A1B2C3D4E5: client=unknown[192.168.1.102]
+Oct 20 08:15:46 mailserver postfix/cleanup[12601]: A1B2C3D4E5: message-id=<20261020081545.A1B2C3D4E5@mail.example.com>
+Oct 20 08:15:46 mailserver postfix/qmgr[1000]: A1B2C3D4E5: from=<dave@example.com>, size=8192, nrcpt=1 (queue active)
+Oct 20 08:15:48 mailserver postfix/smtp[12602]: A1B2C3D4E5: to=<eve@partner.org>, relay=mail.partner.org[10.0.2.1]:25, delay=2.8, delays=0.1/0.02/1.5/1.2, dsn=4.2.2, status=deferred (host mail.partner.org[10.0.2.1] said: 552 5.2.2 <eve@partner.org>: mailbox full, try again later (in reply to RCPT TO command))
+Oct 20 08:20:10 mailserver postfix/smtpd[12700]: DEADBEEF00: client=unknown[192.168.1.103]
+Oct 20 08:20:11 mailserver postfix/cleanup[12701]: DEADBEEF00: message-id=<20261020082010.DEADBEEF00@mail.example.com>
+Oct 20 08:20:11 mailserver postfix/qmgr[1000]: DEADBEEF00: from=<ops@example.com>, size=3200, nrcpt=1 (queue active)
+Oct 20 08:20:13 mailserver postfix/smtp[12702]: DEADBEEF00: to=<support@vendor.com>, relay=mx.vendor.com[10.0.3.1]:25, delay=2.5, delays=0.1/0.03/1.0/1.4, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as F1E2D3C4B5)
+Oct 20 08:20:13 mailserver postfix/qmgr[1000]: DEADBEEF00: removed
+Oct 20 08:25:00 mailserver postfix/smtpd[12800]: CAFEBABE01: client=unknown[172.16.0.51]
+Oct 20 08:25:01 mailserver postfix/cleanup[12801]: CAFEBABE01: message-id=<20261020082500.CAFEBABE01@mail.example.com>
+Oct 20 08:25:01 mailserver postfix/qmgr[1000]: CAFEBABE01: from=<alerts@example.com>, size=1500, nrcpt=3 (queue active)
+Oct 20 08:25:02 mailserver postfix/smtp[12802]: CAFEBABE01: to=<dev1@example.com>, relay=none[127.0.0.1]:25, delay=0.8, delays=0.1/0.01/0.3/0.4, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 1122334455)
+Oct 20 08:25:02 mailserver postfix/smtp[12803]: CAFEBABE01: to=<dev2@example.com>, relay=none[127.0.0.1]:25, delay=0.9, delays=0.1/0.01/0.3/0.5, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 1122334456)
+Oct 20 08:25:03 mailserver postfix/smtp[12804]: CAFEBABE01: to=<dev3@example.com>, relay=none[127.0.0.1]:25, delay=1.0, delays=0.1/0.01/0.4/0.5, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 1122334457)
+Oct 20 08:25:03 mailserver postfix/qmgr[1000]: CAFEBABE01: removed
+Oct 20 08:30:15 mailserver postfix/smtpd[12900]: 5E4D3C2B1A: client=unknown[192.168.1.104]
+Oct 20 08:30:16 mailserver postfix/cleanup[12901]: 5E4D3C2B1A: message-id=<20261020083015.5E4D3C2B1A@mail.example.com>
+Oct 20 08:30:16 mailserver postfix/qmgr[1000]: 5E4D3C2B1A: from=<frank@example.com>, size=45000, nrcpt=1 (queue active)
+Oct 20 08:30:20 mailserver postfix/smtp[12902]: 5E4D3C2B1A: to=<grace@external.com>, relay=mx.external.com[10.0.4.1]:25, delay=5.2, delays=0.1/0.05/3.0/2.1, dsn=5.7.1, status=bounced (550 5.7.1 Message rejected as spam by content filter)
+Oct 20 08:35:42 mailserver postfix/smtpd[13000]: 9988776655: client=unknown[192.168.1.105]
+Oct 20 08:35:43 mailserver postfix/cleanup[13001]: 9988776655: message-id=<20261020083542.9988776655@mail.example.com>
+Oct 20 08:35:43 mailserver postfix/qmgr[1000]: 9988776655: from=<helen@example.com>, size=12800, nrcpt=1 (queue active)
+Oct 20 08:35:46 mailserver postfix/smtp[13002]: 9988776655: to=<ivan@reliable.net>, relay=mx.reliable.net[10.0.5.1]:25, delay=3.1, delays=0.1/0.02/1.8/1.2, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as AAAABBBBCCCC)
+Oct 20 08:35:46 mailserver postfix/qmgr[1000]: 9988776655: removed
+Oct 20 08:40:00 mailserver postfix/smtpd[13100]: 1122334455: client=unknown[172.16.0.52]
+Oct 20 08:40:01 mailserver postfix/cleanup[13101]: 1122334455: message-id=<20261020084000.1122334455@mail.example.com>
+Oct 20 08:40:01 mailserver postfix/qmgr[1000]: 1122334455: from=<jack@example.com>, size=7680, nrcpt=1 (queue active)
+Oct 20 08:40:05 mailserver postfix/smtp[13102]: 1122334455: to=<karen@blocked.com>, relay=mx.blocked.com[10.0.6.1]:25, delay=4.8, delays=0.1/0.03/3.5/1.2, dsn=5.7.1, status=bounced (554 5.7.1 <karen@blocked.com>: Relay access denied)
+Oct 20 08:45:30 mailserver postfix/smtpd[13200]: AABBCCDDEE: client=unknown[192.168.1.106]
+Oct 20 08:45:31 mailserver postfix/cleanup[13201]: AABBCCDDEE: message-id=<20261020084530.AABBCCDDEE@mail.example.com>
+Oct 20 08:45:31 mailserver postfix/qmgr[1000]: AABBCCDDEE: from=<laura@example.com>, size=9500, nrcpt=1 (queue active)
+Oct 20 08:45:34 mailserver postfix/smtp[13202]: AABBCCDDEE: to=<mike@fastmail.com>, relay=mx.fastmail.com[10.0.7.1]:25, delay=3.4, delays=0.1/0.02/1.8/1.5, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as XYZ123ABC456)
+Oct 20 08:45:34 mailserver postfix/qmgr[1000]: AABBCCDDEE: removed
+Oct 20 08:50:12 mailserver postfix/smtpd[13300]: FF00FF00AA: client=unknown[192.168.1.107]
+Oct 20 08:50:13 mailserver postfix/cleanup[13301]: FF00FF00AA: message-id=<20261020085012.FF00FF00AA@mail.example.com>
+Oct 20 08:50:13 mailserver postfix/qmgr[1000]: FF00FF00AA: from=<notifications@example.com>, size=2048, nrcpt=1 (queue active)
+Oct 20 08:50:16 mailserver postfix/smtp[13302]: FF00FF00AA: to=<nick@downserver.com>, relay=mx.downserver.com[10.0.8.1]:25, delay=4.0, delays=0.1/0.02/3.5/0.4, dsn=4.4.1, status=deferred (connect to mx.downserver.com[10.0.8.1]:25: Connection refused)
+Oct 20 08:55:00 mailserver postfix/smtpd[13400]: 1234567890: client=unknown[192.168.1.108]
+Oct 20 08:55:01 mailserver postfix/cleanup[13401]: 1234567890: message-id=<20261020085500.1234567890@mail.example.com>
+Oct 20 08:55:01 mailserver postfix/qmgr[1000]: 1234567890: from=<olivia@example.com>, size=15360, nrcpt=1 (queue active)
+Oct 20 08:55:04 mailserver postfix/smtp[13402]: 1234567890: to=<pete@example.com>, relay=none[127.0.0.1]:25, delay=3.6, delays=0.1/0.02/1.5/2.0, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as DD11EE22FF33)
+Oct 20 08:55:04 mailserver postfix/qmgr[1000]: 1234567890: removed

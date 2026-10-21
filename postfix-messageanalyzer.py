@@ -844,6 +844,52 @@ def main(stdscr):
             pass
 
 
+def _check_log_file(path):
+    """Validate that the log file is accessible. Exit with a clear message if not."""
+    reasons = []
+
+    if not os.path.exists(path):
+        reasons.append("The log file does not exist at the specified path: %s" % path)
+        reasons.append("")
+        reasons.append("Possible causes:")
+        reasons.append("  - Postfix is not installed or not running")
+        reasons.append(
+            "  - The mail log is located at a different path (use --logfile to specify)"
+        )
+        reasons.append("  - The log file has been rotated and not yet recreated")
+        if os.path.exists("/var/log"):
+            reasons.append("  - /var/log exists but may not contain mail.log")
+        else:
+            reasons.append("  - /var/log directory does not exist on this system")
+        reasons.append("")
+        reasons.append("To find the mail log location, run:")
+        reasons.append(
+            "  journalctl -u postfix 2>/dev/null || find /var/log -name 'mail*' 2>/dev/null"
+        )
+    elif not os.path.isfile(path):
+        reasons.append("The log path exists but is not a regular file: %s" % path)
+    elif not os.access(path, os.R_OK):
+        reasons.append("The log file is not readable: %s" % path)
+        reasons.append("")
+        reasons.append("Possible causes:")
+        reasons.append("  - Insufficient permissions (need read access for this file)")
+        reasons.append(
+            "  - The file is owned by root and you are not in the adm/syslog group"
+        )
+        reasons.append("")
+        reasons.append("To fix, run one of:")
+        reasons.append("  sudo chmod o+r %s" % path)
+        reasons.append(
+            "  sudo usermod -a -G adm $(whoami)   # then log out and back in"
+        )
+    if reasons:
+        print("", file=sys.stderr)
+        print("ERROR: Cannot access mail log file", file=sys.stderr)
+        for r in reasons:
+            print(r, file=sys.stderr)
+        sys.exit(1)
+
+
 def run():
     global DEBUG, LOG_FILE_ARG, DEBUG_FILE_ARG, stop_event, START_SINCE_TS
     p = argparse.ArgumentParser(description="Postfix message analyzer (curses UI).")
@@ -877,6 +923,9 @@ def run():
             sys.exit(1)
     else:
         START_SINCE_TS = None
+
+    # Validate log file accessibility before entering curses
+    _check_log_file(LOG_FILE_ARG)
 
     stop_event_local = threading.Event()
     stop_event = stop_event_local
