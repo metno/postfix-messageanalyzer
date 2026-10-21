@@ -52,6 +52,7 @@ Other `--since` formats:
 |--------|---------|---------|
 | Number + unit | `30m`, `2h`, `1d` | Hours, minutes, seconds, days |
 | Plain number | `24` | Hours |
+| Named | `today`, `yesterday` | Local midnight (converted to UTC) |
 | ISO timestamp | `2026-01-15T08:00:00Z` | Specific start time |
 
 ### Custom log file path

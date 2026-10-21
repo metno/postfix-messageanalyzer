@@ -77,6 +77,17 @@ def parse_since_arg(s):
     if not s:
         return None
     s = s.strip()
+    # Named anchors: today/yesterday → local midnight, converted to UTC
+    if s.lower() == "today":
+        local_midnight = datetime.datetime.now().replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+        return local_midnight.astimezone(datetime.timezone.utc)
+    if s.lower() == "yesterday":
+        local_midnight = datetime.datetime.now().replace(
+            hour=0, minute=0, second=0, microsecond=0
+        ) - datetime.timedelta(days=1)
+        return local_midnight.astimezone(datetime.timezone.utc)
     m = re.match(r"^(?P<num>\d+)(?P<unit>[smhd])$", s, re.IGNORECASE)
     if m:
         n = int(m.group("num"))
@@ -98,7 +109,7 @@ def parse_since_arg(s):
         return dt.astimezone(datetime.timezone.utc)
     except Exception:
         raise ValueError(
-            "Invalid --since value. Use e.g. '1h', '30m', '3600', '24' (hours) or ISO timestamp."
+            "Invalid --since value. Use e.g. '1h', '30m', '1d', 'today', 'yesterday' or ISO timestamp."
         )
 
 
@@ -850,7 +861,7 @@ def run():
     p.add_argument(
         "--since",
         default=None,
-        help="Start replay from this time: '1h', '30m', '3600' or ISO timestamp",
+        help="Start replay from this time: '1h', '30m', '1d', 'today', 'yesterday' or ISO timestamp",
     )
     args = p.parse_args()
 
