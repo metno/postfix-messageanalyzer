@@ -29,7 +29,11 @@ LAST_LINES = 10
 DEBUG_LINES = 6
 POLL_SLEEP = 0.12
 
-VERSION = "0.2.1"
+VERSION = (
+    open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "VERSION"))
+    .read()
+    .strip()
+)
 
 BATCH_SIZE = 200
 DRAW_INTERVAL = 0.06
