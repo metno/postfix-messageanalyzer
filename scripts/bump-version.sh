@@ -31,4 +31,9 @@ esac
 
 NEW_VERSION="${major}.${minor}.${patch}"
 echo "$NEW_VERSION" >"$VERSION_FILE"
+
+# Also update hardcoded VERSION in the main script
+SCRIPT_DIR="$(dirname "$0")/.."
+sed -i "s/^VERSION = .*/VERSION = \"${NEW_VERSION}\"/" "$SCRIPT_DIR/postfix-messageanalyzer.py"
+
 echo "Bumped to v${NEW_VERSION}"
